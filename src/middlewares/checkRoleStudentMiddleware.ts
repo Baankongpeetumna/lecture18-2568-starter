@@ -13,21 +13,21 @@ export const checkRoleStudent = (
   res: Response,
   next: NextFunction
 ) => {
-  // 1. get "user payload" and "token" from (custom) request
   const payload = req.user;
-  const token = req.token;
 
-  // 2. check if user exists (search with username) and role is ADMIN
-  const user = users.find((u: User) => u.username === payload?.username);
-  if (!user || user.role !== "STUDENT") {
-    return res.status(401).json({
-      success: false,
-      message: "Unauthorized user",
-    });
+  if (!payload) {
+    return res.status(401).json({ success: false, message: "Unauthorized user" });
   }
 
-  // (optional) check if token exists in user data
+  const user = users.find((u: User) => u.username === payload.username);
+  if (!user || user.role !== "STUDENT") {
+    return res.status(401).json({ success: false, message: "Unauthorized user" });
+  }
 
-  // Proceed to next middleware or route handler
+  // เช็คว่า STUDENT เรียกใช้ข้อมูลของตัวเองหรือไม่
+  if (payload.studentId !== req.params.studentId) {
+    return res.status(403).json({ success: false, message: "Forbidden access" });
+  }
+
   next();
 };

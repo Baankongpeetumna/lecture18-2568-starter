@@ -18,7 +18,7 @@ const router = Router();
 // GET /api/v2/users
 router.get("/",authenticateToken,checkRoleAdmin , (req: CustomRequest, res: Response) => {
   try {
-//get AUTHO header
+    //get AUTHO header
     // const authHeader = req.headers["authorization"]
     // console.log(authHeader)
     // //if autheader not found or wrong format
