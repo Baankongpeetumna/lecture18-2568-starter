@@ -2,6 +2,9 @@
 
 ### Content
 
+ชื่อ : เบญญพร อุดมศิลปทรัพย์
+รหัสนศ : 670610714 
+
 - Current API
 - Create route handlers for `/api/v2/users`
 - JSON Web Token
@@ -217,6 +220,7 @@ router.get("/", (req: Request, res: Response) => {
     // 4. check if user exists (search with username) and role is ADMIN
 
     // return all users
+    //ของใบบัว 670610714 อย่าก้อปฉันจ้ะ
     return res.json({
       success: true,
       data: users,

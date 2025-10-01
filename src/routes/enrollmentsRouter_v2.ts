@@ -1,5 +1,4 @@
 import { Router, type Request, type Response } from "express";
-import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -12,8 +11,6 @@ import type {
 
 // import database
 import { users, reset_users, DB, enrollments, students } from "../db/db.js";
-import { success } from "zod";
-import { zStudentId } from "../libs/zodValidators.js";
 
 import { authenticateToken } from "../middlewares/authenMiddleware.js";
 import { checkRoleAdmin } from "../middlewares/checkRoleAdminMiddleware.js";
@@ -49,7 +46,7 @@ router.get(
         success: false,
         message: "Something is wrong, please try again",
         error: err,
-      });
+      });//ของ 670610714 อย่าก็อปอ้ายเด้อจ้า
     }
   }
 );
@@ -105,7 +102,7 @@ router.post(
     const { courseId } = req.body as { courseId: string };
     const payload = req.user;
 
-    // แอดมินไม่เสร่อ
+    // แอดมินอย่ายุ่ง
     if (payload?.role === "ADMIN") {
       return res
         .status(403)
